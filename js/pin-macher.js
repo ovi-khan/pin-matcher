@@ -22,3 +22,44 @@ document.getElementById('genarate-pin-btn').addEventListener('click', function()
     const pinInput = document.getElementById('pin-input')
     pinInput.value = pin 
 })
+document.getElementById('calculator').addEventListener('click', function(event) {
+    const number = event.target.innerText
+    const calculatorDisplay = document.getElementById('calculator-display')
+    const previousDisplayNumber = calculatorDisplay.value
+    if (isNaN (number)) {
+        if(number === 'C') {
+            calculatorDisplay.value = '';
+        }else if (number === '<'){
+            const digits = previousDisplayNumber.split('')
+            digits.pop()
+            const remainingDigits = digits.join('')
+            calculatorDisplay.value = remainingDigits           
+        }
+    } else {
+        
+        
+        const newCalculatorDisplayNumber = previousDisplayNumber + number
+        calculatorDisplay.value = newCalculatorDisplayNumber
+    }
+})
+
+document.getElementById('verify-pin').addEventListener('click', function() {
+    const pinInputField = document.getElementById('pin-input')
+    const currentPin = pinInputField.value
+
+    const calculatorDisplay =  document.getElementById('calculator-display')
+    const calculatorDisplayNumber = calculatorDisplay.value
+
+    const pinRejectMassege = document.getElementById('pin-reject')
+    const pinSuccessMassege = document.getElementById('pin-success')
+    if(calculatorDisplayNumber == currentPin) {
+        
+        pinSuccessMassege.style.display = 'block'
+        pinRejectMassege.style.display = 'none'
+    }else {
+        
+        pinRejectMassege.style.display = 'block'
+        pinSuccessMassege.style.display = 'none'
+    }
+})
+
